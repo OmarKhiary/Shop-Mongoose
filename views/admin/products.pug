@@ -18,7 +18,7 @@ block content
                             h2.product__price $#{product.price}
                             p.product__description #{product.description}                        
                         div.card__actions
-                            - var productID = product.id
+                            - var productID = product._id
                             a(href=('/admin/edit-product/' + productID + "?edit=true" ), class="btn") Edit
                             form(action="/admin/delete-product", method="POST")
                                 input(type="hidden", value=productID, name="productId")                 

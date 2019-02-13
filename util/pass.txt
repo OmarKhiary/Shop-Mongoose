@@ -1,0 +1,5 @@
+hEXEJMisDGngU5jT
+
+mongodb+srv://khairy:hEXEJMisDGngU5jT@cluster0-dyyja.mongodb.net/admin
+
+mongodb+srv://khairy:hEXEJMisDGngU5jT@cluster0-dyyja.mongodb.net/test?retryWrites=true
