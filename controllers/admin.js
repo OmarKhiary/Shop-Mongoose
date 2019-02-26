@@ -19,6 +19,7 @@ const postAddProduct = (req, res, next) => {
         price:price,
         description:description,
         imageUrl:imageUrl,
+        userId: req.user._id // Or req.user mongoose handle this for u
     });
     product.save()
     .then((results) => {
