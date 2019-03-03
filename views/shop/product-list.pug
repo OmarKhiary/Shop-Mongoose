@@ -19,7 +19,8 @@ block content
                             p.product__description #{product.description}                        
                         div.card__actions
                            - var productID = product._id
-                            a.btn(href='/products/' + productID) Details 
+                            a.btn(href='/products/' + productID) Details
+                            if isAuthenticated
                             include ../includes/add-to-cart.pug
         else
             h1 No Products
