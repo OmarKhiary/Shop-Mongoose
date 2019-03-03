@@ -25,6 +25,7 @@ const postLogin = (req, res, next) => {
     .then(user => {
         req.session.isLoggedIn = true;
         req.session.user = user;
+    }).then(() => {
         res.redirect('/')
         console.log(req.session);
         console.log(req.session.user);
