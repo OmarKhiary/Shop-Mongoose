@@ -57,21 +57,9 @@ app.use(authRoutes);
 app.use(get404);
 
 mongoose.connect(
-    'mongodb+srv://khairy:hEXEJMisDGngU5jT@cluster0-dyyja.mongodb.net/mongoose-shop?retryWrites=true',
+    MONGODB_URI,
     { useNewUrlParser: true }
 ).then(result => {
-    User.findOne().then(user => {
-        if(!user) {
-            const user = new User({
-                name: 'Omar',
-                email: 'omar@test.com',
-                cart: {
-                    items: []
-                }
-            });
-            user.save();
-        }
-    });
     app.listen(3000);
 }).catch(
     err => {console.log(err);}

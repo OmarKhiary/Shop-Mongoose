@@ -50,7 +50,7 @@ const getIndex = (req, res, next) => {
     .catch(err => console.log(err)); 
 };
 
-const getCart = (req, res,  next) => {
+const getCart = (req, res, next) => {
     req.user
     .populate('cart.items.productId')
     .execPopulate()

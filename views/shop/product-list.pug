@@ -20,7 +20,7 @@ block content
                         div.card__actions
                            - var productID = product._id
                             a.btn(href='/products/' + productID) Details
-                            if isAuthenticated
+                        if isAuthenticated
                             include ../includes/add-to-cart.pug
         else
             h1 No Products
