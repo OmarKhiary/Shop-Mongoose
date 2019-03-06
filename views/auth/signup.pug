@@ -8,7 +8,9 @@ block styles
 block content
     
     main
-     include ../includes/variables.pug 
+    if errorMessage
+      div(class= "user-message user-message--error") #{errorMessage}
+    include ../includes/variables.pug 
         form.login-form(action=('/signup'), method="POST")
             .form-control
                 label(for="email") E-Mail

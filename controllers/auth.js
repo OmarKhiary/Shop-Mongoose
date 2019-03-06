@@ -14,11 +14,17 @@ const getLogin = (req, res, next) => {
     //     .split(';')[0]
     //     .trim()
     //     .split('='));
-    console.log(req.session.isLoggedIn);                                                           
+    let message = req.flash('error');
+    console.log(message);
+    if(message.length > 0) {
+        message = message[0]
+    } else {
+        message = null;
+    }
     res.render('auth/login',{
         page:'/login',
         pageTitle:'Login',
-        isAuthenticated: false
+        errorMessage: message
     });
 };
 
@@ -28,10 +34,11 @@ const postLogin = (req, res, next) => {
     User.findOne({email: email})
     .then(user => {
         if(!user) {
+            req.flash('error', 'Invalid email or password.');
             return res.redirect('/login');
         }
         bcrypt.compare(password, user.password)
-        .then(doMatch => {
+        .then(doMatch => {re
             if(doMatch){
                 req.session.isLoggedIn = true;
                 req.session.user = user;
@@ -40,6 +47,7 @@ const postLogin = (req, res, next) => {
                     res.redirect('/');
                 });
             }
+            req.flash('error', 'Invalid email or password.');
             res.redirect('/login');
         }).catch( err => {
             console.log(err);
@@ -49,10 +57,16 @@ const postLogin = (req, res, next) => {
 };
 
 const getSignup = (req, res, next) => {
+    let message = req.flash('error');
+    if (message.length > 0) {
+        message = message[0];
+    } else {
+        message = null;
+    }
     res.render('auth/signup', {
         path:'/signup',
         pageTitle:'signup',
-        isAuthenticated: false
+        errorMessage: message
     })
 };
 
@@ -63,6 +77,7 @@ const postSignup = (req, res, next) => {
     User.findOne({email : email})
     .then((userDoc) => {
         if(userDoc){
+            req.flash('error', 'E-Mail exists already, please pick a different one.');
             return res.redirect('/signup')
         }
         // @returns promise

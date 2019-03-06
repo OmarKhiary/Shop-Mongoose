@@ -8,6 +8,8 @@ block styles
 block content
     
     main
+     if errorMessage
+        div(class= "user-message user-message--error") #{errorMessage}
      include ../includes/variables.pug 
         form.login-form(action=('/login/'), method="POST")
             .form-control
