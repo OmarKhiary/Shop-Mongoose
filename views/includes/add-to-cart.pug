@@ -1,3 +1,5 @@
-form(action="/cart", method="POST") 
+form(action="/cart", method="POST")
+    - var csrf_Token = csrfToken
+    input(type="hidden", name="_csrf", value=csrf_Token)
     button(type="submit").btn Add to Cart
     input(type="hidden", name="productId", value=product._id) 

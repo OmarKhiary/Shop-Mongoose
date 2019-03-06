@@ -11,10 +11,14 @@ block content
                         li.cart__item 
                             p #{product.productId.title} #{product.quantity}
                             form(action="/cart-delete-item", method="POST")
-                                - var productID = product._id
+                                - var productID = product._id;
                                 input(type="hidden", value=productID, name="productId")
+                                - var csrf_Token = csrfToken;
+                                input(type="hidden", name="_csrf", value=csrf_Token)
                                 button(class="btn danger" type="submit") Delete 
                 hr
                 div.centered
-                form(action="/create-order", method="POST")
-                    button.btn(type="submit") Order Now!                        
+                    form(action="/create-order", method="POST")
+                        - var csrf_Token = csrfToken;
+                        input(type="hidden", name="_csrf", value=csrf_Token)
+                        button.btn(type="submit") Order Now!                        

@@ -18,7 +18,9 @@ block content
                 input(type="password", name="password", id="password")               
             .form-control
                 label(for="confirmPassword") Confirm Password  
-                input(type="password", name="confirmPassword", id="confirmPassword")               
+                input(type="password", name="confirmPassword", id="confirmPassword")
+            - var csrf_Token = csrfToken;
+            input(type="hidden", name="_csrf", value=csrf_Token)                  
             button.btn(type="submit") Signup
         
                 

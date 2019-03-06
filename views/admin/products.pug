@@ -18,10 +18,12 @@ block content
                             h2.product__price $#{product.price}
                             p.product__description #{product.description}                        
                         div.card__actions
-                            - var productID = product._id
+                            - var productID = product._id;
                             a(href=('/admin/edit-product/' + productID + "?edit=true" ), class="btn") Edit
                             form(action="/admin/delete-product", method="POST")
-                                input(type="hidden", value=productID, name="productId")                 
+                                input(type="hidden", value=productID, name="productId")   
+                                - var csrf_Token = csrfToken
+                                input(type="hidden", name="_csrf", value=csrf_Token)              
                                 button(type="submit").btn Delete
         else
             h1 No Products
